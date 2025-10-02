@@ -248,7 +248,7 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   (function() {
-    emailjs.init("YOUR_USER_ID"); // PUBLIC_KEY
+    emailjs.init("_qKt61jrHvEWCuZph"); // PUBLIC_KEY
   })();
 </script>
 
@@ -288,7 +288,7 @@
     cnHidden.value = checkedCNs;
 
     // Enviar com EmailJS
-    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+    emailjs.sendForm("service_ubg7zn3", "template_7az3lls", this)
       .then(function(response) {
         alert("✅ Formulário enviado com sucesso!");
         document.getElementById("questionario").reset();
