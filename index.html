@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>TMCO CONSULTORIA – QUESTIONÁRIO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    :root{--azul:#003366;--azul2:#007BFF;--amarelo:#FFD700;--cinza:#f4f4f4;}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--cinza);margin:0;min-height:100vh;display:flex;flex-direction:column}
+    header{background:var(--azul);color:#fff;border-bottom:2px solid var(--azul2);text-align:center}
+    header img{width:100%;max-height:250px;object-fit:contain;display:block;margin:0 auto;background:#fff}
+    header h1{margin:0;padding:12px;font-size:20px}
+    .cta{text-align:center;margin:18px 0}
+    .cta button{padding:14px 24px;background:var(--azul2);color:#fff;border:0;border-radius:10px;font-size:16px;cursor:pointer}
+    form{display:none;background:#fff;max-width:980px;margin:18px auto;padding:22px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    h3{background:var(--amarelo);color:var(--azul);padding:8px 12px;border-radius:8px;margin:26px 0 14px;font-size:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .full{grid-column:1/-1}
+    .q{display:flex;flex-direction:column;gap:6px}
+    label{font-weight:700;color:var(--azul2)}
+    input,select,textarea{padding:10px;border:1px solid #d0d7de;border-radius:8px}
+    input:invalid{border-color:#e74c3c}
+    small.req{color:#e74c3c;font-weight:700}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{padding:10px 16px;border-radius:8px;border:0;cursor:pointer}
+    .primary{background:var(--azul2);color:#fff}
+    .ghost{background:#e9eef7;color:#083663}
+    footer{margin-top:auto;text-align:center;background:var(--azul);color:#fff;border-top:2px solid var(--azul2);padding:14px}
+    footer .diretriz{font-size:12px;color:#ddd;font-style:italic;margin-top:4px;display:block}
+    .note{font-size:12px;color:#666}
+    @media(max-width:780px){.grid{grid-template-columns:1fr}}
+
+    /* ---------------- CNs ---------------- */
+    .cn-section { margin-top: 20px; }
+    .region { padding: 12px; border-radius: 10px; margin-bottom: 18px; }
+    .region-title { font-weight: bold; margin-bottom: 10px; font-size: 16px; }
+    .cn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; }
+    .cn-item { display: flex; align-items: center; gap: 4px; }
+    .select-all { display: block; margin-bottom: 8px; font-weight: 600; cursor: pointer; }
+    .norte { background-color: #cce5ff; }
+    .nordeste { background-color: #d4edda; }
+    .centro { background-color: #fff3cd; }
+    .sudeste { background-color: #f8d7da; }
+    .sul { background-color: #e2e3e5; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="tmco.png" alt="TMCO Consultoria" />
+    <h1>QUESTIONÁRIO PARA DIAGNÓSTICO DE PROJETO JÁ EM ANDAMENTO</h1>
+  </header>
+
+  <div class="cta">
+    <button type="button" class="btn primary" onclick="mostrarFormulario()">Clique aqui e preencha o formulário</button>
+  </div>
+
+  <form id="questionario">
+    <!-- ----------------- DADOS DA EMPRESA ----------------- -->
+    <h3>Dados da Empresa</h3>
+    <div class="grid">
+      <div class="q"><label>Razão Social <small class="req">*</small></label><input required name="razao_social" /></div>
+      <div class="q"><label>Nome Fantasia</label><input name="nome_fantasia" /></div>
+      <div class="q"><label>CNPJ <small class="req">*</small></label><input required name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" /></div>
+      <div class="q"><label>Inscrição Estadual</label><input name="ie" /></div>
+      <div class="q"><label>Inscrição Municipal</label><input name="im" /></div>
+      <div class="q full"><label>Endereço</label><input name="endereco" /></div>
+      <div class="q"><label>Bairro</label><input name="bairro" /></div>
+      <div class="q"><label>Cidade</label><input name="cidade" /></div>
+      <div class="q"><label>UF <small class="req">*</small></label>
+        <input list="ufs" id="uf" name="uf" required placeholder="Ex.: SP" />
+        <datalist id="ufs">
+          <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+          <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+          <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+          <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+          <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+          <option>SE</option><option>TO</option>
+        </datalist>
+      </div>
+      <div class="q"><label>CEP</label><input name="cep" id="cep" placeholder="00000-000" /></div>
+    </div>
+
+    <!-- ----------------- DADOS DO REPRESENTANTE ----------------- -->
+    <h3>Dados do Representante Legal</h3>
+    <div class="grid">
+      <div class="q"><label>Nome Completo <small class="req">*</small></label><input required name="rep_nome" /></div>
+      <div class="q"><label>Telefone</label><input name="rep_tel" id="tel" placeholder="(00) 00000-0000" /></div>
+      <div class="q"><label>E-mail <small class="req">*</small></label><input required type="email" name="rep_email" /></div>
+      <div class="q"><label>CPF</label><input name="rep_cpf" id="cpf" placeholder="000.000.000-00" /></div>
+      <div class="q"><label>RG</label><input name="rep_rg" /></div>
+      <div class="q"><label>Nacionalidade</label><input name="rep_nacionalidade" /></div>
+      <div class="q"><label>Estado Civil</label>
+        <select name="rep_estado_civil">
+          <option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option>
+          <option>Divorciado(a)</option><option>Viúvo(a)</option><option>União Estável</option>
+        </select>
+      </div>
+      <div class="q"><label>Data de Nascimento</label><input type="date" name="rep_nascimento" /></div>
+      <div class="q full"><label>Endereço Residencial</label><input name="rep_endereco" /></div>
+      <div class="q"><label>Bairro Residencial</label><input name="rep_bairro" /></div>
+      <div class="q"><label>Cidade Residencial</label><input name="rep_cidade" /></div>
+      <div class="q"><label>UF Residencial</label><input list="ufs" name="rep_uf" placeholder="Ex.: SP" /></div>
+      <div class="q"><label>CEP Residencial</label><input name="rep_cep" id="cep_res" placeholder="00000-000" /></div>
+    </div>
+
+    <!-- ----------------- CREDENCIAMENTO ABR ----------------- -->
+    <h3>Possui credenciamento nos Sistemas ABR?</h3>
+    <div class="grid">
+      <div class="q"><label>EASI/nSAPN:</label><select id="easi" name="EASI"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>ESOA/SNOA:</label><select id="esoa" name="ESOA"><option value="">Selecionehttps://www.emailjs.com/</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Nsapn/QEML:</label><select id="nsapn" name="Nsapn"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>BA ITX:</label><select id="baitx" name="BA ITX"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Portabilidade:</label><select id="portabilidade" name="Portabilidade"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>STIRSHAKEN:</label><select id="stirshaken" name="STIRSHAKEN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+    </div>
+
+    <!-- ----------------- RECURSOS DE NUMERAÇÃO ----------------- -->
+    <h3>Possui recursos de numeração?</h3>
+    <div class="grid">
+      <div class="q"><label>RN1:</label><input name="RN1" /></div>
+      <div class="q"><label>EOT:</label><input name="EOT" /></div>
+      <div class="q"><label>Prefixo:</label><input name="Prefixo" /></div>
+      <div class="q"><label>CNG:</label><input name="CNG" /></div>
+    </div>
+
+    <!-- ----------------- SOLUÇÃO ABR ----------------- -->
+    <h3>Solução ABR a ser utilizada</h3>
+    <div class="grid">
+      <div class="q full"><label>Informe qual solução ABR:</label><input name="solucao_abr" /></div>
+    </div>
+
+    <!-- ----------------- CNs POR REGIÃO ----------------- -->
+    <h3>Qual ou quais as áreas de atuação por (CN) para o referido projeto?</h3>
+    <div class="cn-section">
+      <!-- Norte -->
+      <div class="region norte">
+        <div class="region-title">Norte</div>
+        <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'norte')"> Selecionar Todos</label>
+        <div class="cn-grid">
+          <label class="cn-item"><input type="checkbox" name="CN" value="68"> 68</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="69"> 69</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="92"> 92</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="93"> 93</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="94"> 94</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="95"> 95</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="96"> 96</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="97"> 97</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="98"> 98</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="99"> 99</label>
+        </div>
+      </div>
+      <!-- Nordeste -->
+      <div class="region nordeste">
+        <div class="region-title">Nordeste</div>
+        <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'nordeste')"> Selecionar Todos</label>
+        <div class="cn-grid">
+          <label class="cn-item"><input type="checkbox" name="CN" value="71"> 71</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="73"> 73</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="74"> 74</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="75"> 75</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="77"> 77</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="79"> 79</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="81"> 81</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="82"> 82</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="83"> 83</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="84"> 84</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="85"> 85</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="86"> 86</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="87"> 87</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="88"> 88</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="89"> 89</label>
+        </div>
+      </div>
+      <!-- Centro-Oeste -->
+      <div class="region centro">
+        <div class="region-title">Centro-Oeste</div>
+        <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'centro')"> Selecionar Todos</label>
+        <div class="cn-grid">
+          <label class="cn-item"><input type="checkbox" name="CN" value="61"> 61</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="62"> 62</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="63"> 63</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="64"> 64</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="65"> 65</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="66"> 66</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="67"> 67</label>
+        </div>
+      </div>
+      <!-- Sudeste -->
+      <div class="region sudeste">
+        <div class="region-title">Sudeste</div>
+        <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sudeste')"> Selecionar Todos</label>
+        <div class="cn-grid">
+          <label class="cn-item"><input type="checkbox" name="CN" value="11"> 11</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="12"> 12</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="13"> 13</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="14"> 14</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="15"> 15</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="16"> 16</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="17"> 17</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="18"> 18</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="19"> 19</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="21"> 21</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="22"> 22</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="24"> 24</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="27"> 27</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="28"> 28</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="31"> 31</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="32"> 32</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="33"> 33</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="34"> 34</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="35"> 35</label>
+        </div>
+      </div>
+      <!-- Sul -->
+      <div class="region sul">
+        <div class="region-title">Sul</div>
+        <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sul')"> Selecionar Todos</label>
+        <div class="cn-grid">
+          <label class="cn-item"><input type="checkbox" name="CN" value="41"> 41</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="42"> 42</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="43"> 43</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="44"> 44</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="45"> 45</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="46"> 46</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="47"> 47</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="48"> 48</label>
+          <label class="cn-item"><input type="checkbox" name="CN" value="49"> 49</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn primary">Enviar</button>
+      <button type="reset" class="btn ghost">Limpar</button>
+    </div>
+  </form>
+
+  <footer>
+    TMCO Consultoria &copy; 2025
+    <span class="diretriz">Todos os direitos reservados.</span>
+  </footer>
+
+    <!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("YOUR_USER_ID"); // PUBLIC_KEY
+  })();
+</script>
+
+<script>
+  // Função para mostrar o formulário
+  function mostrarFormulario() {
+    document.getElementById("questionario").style.display = "block";
+    window.scrollTo(0, 0);
+  }
+
+  // Função para marcar/desmarcar CNs por região
+  function toggleRegion(source, regionClass) {
+    const checkboxes = document.querySelectorAll("." + regionClass + " input[type='checkbox']");
+    checkboxes.forEach(cb => {
+      if (cb !== source) cb.checked = source.checked;
+    });
+  }
+
+  // Enviar o formulário via EmailJS
+  document.getElementById("questionario").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // ⚠️ Se desejar coletar e enviar múltiplos checkboxes (CNs), junte-os antes:
+    const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
+      .map(cb => cb.value)
+      .join(", ");
+
+    // Coloque os CNs combinados num campo oculto:
+    let cnHidden = document.getElementById("cn_combinado");
+    if (!cnHidden) {
+      cnHidden = document.createElement("input");
+      cnHidden.type = "hidden";
+      cnHidden.name = "cn_combinado";
+      cnHidden.id = "cn_combinado";
+      this.appendChild(cnHidden);
+    }
+    cnHidden.value = checkedCNs;
+
+    // Enviar com EmailJS
+    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+      .then(function(response) {
+        alert("✅ Formulário enviado com sucesso!");
+        document.getElementById("questionario").reset();
+      }, function(error) {
+        console.error("❌ Erro:", error);
+        alert("Erro ao enviar. Verifique sua conexão ou tente novamente.");
+      });
+  });
+</script>
+
+
+</body>
+</html>
+
