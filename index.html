@@ -506,8 +506,114 @@
   </div>
 
   <form id="questionario">
-    <!-- Seções anteriores do formulário mantidas iguais -->
+    <!-- ----------------- DADOS DA EMPRESA ----------------- -->
+    <h3>Dados da Empresa</h3>
+    <div class="grid">
+      <div class="q"><label>Razão Social <small class="req">*</small></label><input required name="razao_social" /></div>
+      <div class="q"><label>Nome Fantasia</label><input name="nome_fantasia" /></div>
+      <div class="q"><label>CNPJ <small class="req">*</small></label><input required name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" /></div>
+      <div class="q"><label>Inscrição Estadual</label><input name="ie" /></div>
+      <div class="q"><label>Inscrição Municipal</label><input name="im" /></div>
+      <div class="q full"><label>Endereço</label><input name="endereco" /></div>
+      <div class="q"><label>Bairro</label><input name="bairro" /></div>
+      <div class="q"><label>Cidade</label><input name="cidade" /></div>
+      <div class="q"><label>UF <small class="req">*</small></label>
+        <input list="ufs" id="uf" name="uf" required placeholder="Ex.: SP" />
+        <datalist id="ufs">
+          <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+          <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+          <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+          <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+          <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+          <option>SE</option><option>TO</option>
+        </datalist>
+      </div>
+      <div class="q"><label>CEP</label><input name="cep" id="cep" placeholder="00000-000" /></div>
+    </div>
+
+    <!-- ----------------- DADOS DO REPRESENTANTE ----------------- -->
+    <h3>Dados do Representante Legal</h3>
+    <div class="grid">
+      <div class="q"><label>Nome Completo <small class="req">*</small></label><input required name="rep_nome" /></div>
+      <div class="q"><label>Telefone</label><input name="rep_tel" id="tel" placeholder="(00) 00000-0000" /></div>
+      <div class="q"><label>E-mail <small class="req">*</small></label><input required type="email" name="rep_email" /></div>
+      <div class="q"><label>CPF</label><input name="rep_cpf" id="cpf" placeholder="000.000.000-00" /></div>
+      <div class="q"><label>RG</label><input name="rep_rg" /></div>
+      <div class="q"><label>Nacionalidade</label><input name="rep_nacionalidade" /></div>
+      <div class="q"><label>Estado Civil</label>
+        <select name="rep_estado_civil">
+          <option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option>
+          <option>Divorciado(a)</option><option>Viúvo(a)</option><option>União Estável</option>
+        </select>
+      </div>
+      <div class="q"><label>Data de Nascimento</label><input type="text" placeholder="dd/mm/aaaa" name="rep_nascimento" /></div>
+      <div class="q full"><label>Endereço Residencial</label><input name="rep_endereco" /></div>
+      <div class="q"><label>Bairro Residencial</label><input name="rep_bairro" /></div>
+      <div class="q"><label>Cidade Residencial</label><input name="rep_cidade" /></div>
+      <div class="q"><label>UF Residencial</label><input list="ufs" name="rep_uf" placeholder="Ex.: SP" /></div>
+      <div class="q"><label>CEP Residencial</label><input name="rep_cep" id="cep_res" placeholder="00000-000" /></div>
+    </div>
+
+    <!-- ----------------- CREDENCIAMENTO ABR ----------------- -->
+    <h3>Possui credenciamento nos sistemas ABR?</h3>
+    <div class="grid">
+      <div class="q"><label>EASI/nSAPN:</label><select id="EASI" name="EASI"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>ESOA/SNOA:</label><select id="ESOA" name="ESOA"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>nSAPN/QEML:</label><select id="nSAPN" name="nSAPN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>BA ITX:</label><select id="baitx" name="BA_ITX"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Portabilidade:</label><select id="portabilidade" name="Portabilidade"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN" name="STIRSHAKEN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+    </div>
+
+    <!-- ----------------- RECURSOS DE NUMERAÇÃO ----------------- -->
+    <h3>Possui recursos de numeração?</h3>
+    <div class="grid">
+      <div class="q"><label>RN1:</label><select id="RN1" name="RN1"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>EOT:</label><select id="EOT" name="EOT"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Prefixo:</label><select id="Prefixo" name="Prefixo"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>CNG:</label><select id="CNG" name="CNG" ><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+    </div>
+
+    <!-- ----------------- SOLUÇÃO ABR ----------------- -->
+    <h3>Solução ABR já implantada?</h3>
+    <div class="grid">
+      <div class="q"><label>Portabilidade:</label><select id="Portabilidade_implantada" name="Portabilidade_implantada"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_implantada1" id="FORNECEDOR_implantada1" placeholder="" /></div>
+      <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN_implantada" name="STIRSHAKEN_implantada"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_implantada2" id="FORNECEDOR_implantada2" placeholder="" /></div>
+    </div>
     
+    <h3>Possui CONTRATOS DE ITX com as operadoras?</h3>
+    <div class="grid">
+      <div class="q"><label>ALGAR:</label><select id="ALGAR_contrato" name="ALGAR_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>CLARO:</label><select id="CLARO_contrato" name="CLARO_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>OI:</label><select id="OI_contrato" name="OI_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>TIM:</label><select id="TIM_contrato" name="TIM_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_contrato" id="OUTROS_contrato" placeholder="" /></div>
+    </div>
+    
+    <h3>Possui hoje ITX estabelecida com as operadoras?</h3>
+    <div class="grid">
+      <div class="q"><label>ALGAR:</label><select id="ALGAR_itx" name="ALGAR_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>CLARO:</label><select id="CLARO_itx" name="CLARO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>OI:</label><select id="OI_itx" name="OI_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>TIM:</label><select id="TIM_itx" name="TIM_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>VIVO:</label><select id="VIVO_itx" name="VIVO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_itx" id="OUTROS_itx" placeholder="" /></div>
+    </div>
+    
+    <h3>Qual o escopo do projeto?</h3>
+    <div class="escopo-projeto">
+      <label><input type="checkbox" name="escopo_projeto1" value="1ª Interconexão"> 1ª Interconexão</label>
+      <label><input type="checkbox" name="escopo_projeto2" value="Nova área Geográfica"> Nova área Geográfica</label>
+      <label><input type="checkbox" name="escopo_projeto3" value="Migração de Tecnologia (TDM x SIP x Internet)"> Migração de Tecnologia (TDM x SIP x Internet)</label>
+      <label><input type="checkbox" name="escopo_projeto4" value="Ampliação de Rota Existente"> Ampliação de Rota Existente</label>
+      <label><input type="checkbox" name="escopo_projeto5" value="Contingência"> Contingência</label>
+      <label><input type="checkbox" name="escopo_projeto6" value="Inclusão Novo Serviço (STFC, SMP ou SCM)"> Inclusão Novo Serviço (STFC, SMP ou SCM)</label>
+      <label><input type="checkbox" name="escopo_projeto7" value="Topologia de Centralização SIPi"> Topologia de Centralização SIPi</label>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_escopo" id="OUTROS_escopo" placeholder="" /></div>
+    </div>
+
     <h3>Qual ou quais as áreas de atuação por (CN) para o referido projeto?</h3>
     <div class="cn-section">
       <!-- Norte -->
@@ -787,8 +893,24 @@
         </div>
       </div>
     </div>
+    
+    <h3>Possui Plataforma de Voz?</h3>
+    <div class="grid">
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_plataforma" name="SIM_NAO_plataforma"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_plataforma" id="FORNECEDOR_plataforma" placeholder="" /></div>
+    </div>
 
-    <!-- Restante do formulário mantido igual -->
+    <h3>Possui Gateway/SBC?</h3>
+    <div class="grid">
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_gateway" name="SIM_NAO_gateway"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_gateway" id="FORNECEDOR_gateway" placeholder="" /></div>
+    </div>
+
+    <h3>Possui Sistema/Plataforma de DETRAF?</h3>
+    <div class="grid">
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_sistema_detraf" name="SIM_NAO_sistema_detraf"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_sistema_detraf" id="FORNECEDOR_sistema_detraf" placeholder="" /></div>
+    </div>
     
     <div class="actions">
       <button type="submit" class="btn primary">Enviar</button>
@@ -801,19 +923,21 @@
     <span class="diretriz">Todos os direitos reservados.</span>
   </footer>
 
-  <!-- Scripts mantidos iguais -->
+  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("_qKt61jrHvEWCuZph");
+      emailjs.init("_qKt61jrHvEWCuZph"); // PUBLIC_KEY
     })();
   </script>
 
   <script>
+    // Função para mostrar o formulário
     function mostrarFormulario() {
       document.getElementById("questionario").style.display = "block";
       document.body.classList.add('formulario-aberto');
       
+      // Adiciona overlay para melhor legibilidade
       if (!document.querySelector('.overlay')) {
         const overlay = document.createElement('div');
         overlay.className = 'overlay';
@@ -823,6 +947,7 @@
       window.scrollTo(0, 0);
     }
 
+    // Função para marcar/desmarcar CNs por região
     function toggleRegion(source, regionClass) {
       const checkboxes = document.querySelectorAll("." + regionClass + " input[type='checkbox']");
       checkboxes.forEach(cb => {
@@ -830,30 +955,48 @@
       });
     }
 
+    // Função para marcar/desmarcar CNs por estado
     function toggleState(stateCode) {
+      // Encontra o container do estado usando o atributo data-state - CORRIGIDO
       const stateContainer = document.querySelector('.state[data-state="' + stateCode + '"]');
       if (!stateContainer) return;
       
       const checkboxes = stateContainer.querySelectorAll("input[type='checkbox']");
       if (checkboxes.length === 0) return;
       
+      // Verifica se todos já estão selecionados
       const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+      
+      // Alterna o estado de todos os checkboxes
       checkboxes.forEach(cb => {
         cb.checked = !allChecked;
       });
     }
 
+    // Enviar o formulário via EmailJS
     document.getElementById("questionario").addEventListener("submit", function(e) {
       e.preventDefault();
       
+      // Adiciona efeito de loading ao botão
       const submitBtn = this.querySelector('button[type="submit"]');
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
+      // Coletar checkboxes de escopo do projeto individualmente
+      const escopo1 = document.querySelector('input[name="escopo_projeto1"]:checked')?.value || '';
+      const escopo2 = document.querySelector('input[name="escopo_projeto2"]:checked')?.value || '';
+      const escopo3 = document.querySelector('input[name="escopo_projeto3"]:checked')?.value || '';
+      const escopo4 = document.querySelector('input[name="escopo_projeto4"]:checked')?.value || '';
+      const escopo5 = document.querySelector('input[name="escopo_projeto5"]:checked')?.value || '';
+      const escopo6 = document.querySelector('input[name="escopo_projeto6"]:checked')?.value || '';
+      const escopo7 = document.querySelector('input[name="escopo_projeto7"]:checked')?.value || '';
+
+      // Coletar e enviar múltiplos checkboxes (CNs)
       const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
         .map(cb => cb.value)
         .join(", ");
 
+      // Colocar os CNs combinados num campo oculto:
       let cnHidden = document.getElementById("cn_combinado");
       if (!cnHidden) {
         cnHidden = document.createElement("input");
@@ -864,6 +1007,7 @@
       }
       cnHidden.value = checkedCNs;
 
+      // Enviar com EmailJS
       emailjs.sendForm("service_ubg7zn3", "template_7az3lls", this)
         .then(function(response) {
           alert("✅ Formulário enviado com sucesso!");
@@ -878,8 +1022,9 @@
         });
     });
 
+    // Função para buscar CNPJ na BrasilAPI
     async function buscarCNPJ(cnpj) {
-      cnpj = cnpj.replace(/\D/g, "");
+      cnpj = cnpj.replace(/\D/g, ""); // remove caracteres não numéricos
       if (cnpj.length !== 14) return;
 
       try {
@@ -888,6 +1033,7 @@
 
         const dados = await resposta.json();
 
+        // Preencher automaticamente os campos - CORRIGIDO
         document.querySelector("input[name='razao_social']").value = dados.razao_social || "";
         document.querySelector("input[name='nome_fantasia']").value = dados.nome_fantasia || "";
         document.querySelector("input[name='endereco']").value = (dados.logradouro || "") + ", " + (dados.numero || "");
@@ -901,6 +1047,7 @@
       }
     }
 
+    // Detecta quando o usuário sai do campo de CNPJ
     document.getElementById("cnpj").addEventListener("blur", function () {
       buscarCNPJ(this.value);
     });
