@@ -38,14 +38,66 @@
     .cn-section { margin-top: 20px; }
     .region { padding: 12px; border-radius: 10px; margin-bottom: 18px; }
     .region-title { font-weight: bold; margin-bottom: 10px; font-size: 16px; }
-    .cn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; }
-    .cn-item { display: flex; align-items: center; gap: 4px; }
-    .select-all { display: block; margin-bottom: 8px; font-weight: 600; cursor: pointer; }
+    .states-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+      gap: 12px; 
+    }
+    .state { 
+      background-color: #f8f9fa; 
+      padding: 10px; 
+      border-radius: 8px; 
+      border-left: 4px solid var(--azul2); 
+      min-height: auto;
+    }
+    .state-title { 
+      font-weight: bold; 
+      margin-bottom: 8px; 
+      font-size: 14px; 
+      color: var(--azul); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
+    .cn-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); 
+      gap: 6px; 
+    }
+    .cn-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 4px; 
+      font-size: 13px;
+    }
+    .select-all { 
+      display: block; 
+      margin-bottom: 8px; 
+      font-weight: 600; 
+      cursor: pointer; 
+    }
+    .select-all-state { 
+      font-size: 12px; 
+      color: var(--azul2); 
+      cursor: pointer; 
+      text-decoration: underline; 
+    }
     .norte { background-color: #cce5ff; }
     .nordeste { background-color: #d4edda; }
     .centro { background-color: #fff3cd; }
     .sudeste { background-color: #f8d7da; }
-    .sul { background-color: #e2e3e5; }    
+    .sul { background-color: #e2e3e5; }
+    
+    /* Estilos para checkboxes de escopo */
+    .escopo-projeto { margin-bottom: 10px; }
+    .escopo-projeto label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    
+    /* Ajustes para melhor responsividade */
+    @media (max-width: 600px) {
+      .states-grid { 
+        grid-template-columns: 1fr; 
+      }
+    }
   </style>
 </head>
 <body>
@@ -113,7 +165,7 @@
       <div class="q"><label>EASI/nSAPN:</label><select id="EASI" name="EASI"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>ESOA/SNOA:</label><select id="ESOA" name="ESOA"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>nSAPN/QEML:</label><select id="nSAPN" name="nSAPN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>BA ITX:</label><select id="baitx" name="BA ITX"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>BA ITX:</label><select id="baitx" name="BA_ITX"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>Portabilidade:</label><select id="portabilidade" name="Portabilidade"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN" name="STIRSHAKEN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
     </div>
@@ -130,265 +182,417 @@
     <!-- ----------------- SOLUÇÃO ABR ----------------- -->
     <h3>Solução ABR já implantada?</h3>
     <div class="grid">
-      <div class="q"><label>Portabilidade:</label><select id="Portabilidade:" name="Portabilidade:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN:" name="STIRSHAKEN:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Portabilidade:</label><select id="Portabilidade_implantada" name="Portabilidade_implantada"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_implantada1" id="FORNECEDOR_implantada1" placeholder="" /></div>
+      <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN_implantada" name="STIRSHAKEN_implantada"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_implantada2" id="FORNECEDOR_implantada2" placeholder="" /></div>
     </div>
     
     <h3>Possui CONTRATOS DE ITX com as operadoras?</h3>
     <div class="grid">
-      <div class="q"><label>ALGAR:</label><select id="ALGAR:" name="ALGAR:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>CLARO:</label><select id="CLARO:" name="CLARO:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>OI:</label><select id="OI:" name="OI:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>TIM:</label><select id="TIM:" name="TIM:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>VIVO:</label><select id="VIVO:" name="VIVO:"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>ALGAR:</label><select id="ALGAR_contrato" name="ALGAR_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>CLARO:</label><select id="CLARO_contrato" name="CLARO_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>OI:</label><select id="OI_contrato" name="OI_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>TIM:</label><select id="TIM_contrato" name="TIM_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_contato" id="OUTROS_contrato" placeholder="" /></div>
     </div>
     
     <h3>Possui hoje ITX estabelecida com as operadoras?</h3>
     <div class="grid">
-      <div class="q"><label>ALGAR:</label><select id="ALGAR:" name="ALGAR:"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
-      <div class="q"><label>CLARO:</label><select id="CLARO:" name="CLARO:"><option value="">Selecione</option><option>Direta</option><option>Indireta</option>Não</option></select></div>
-      <div class="q"><label>OI:</label><select id="OI:" name="OI:"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
-      <div class="q"><label>TIM:</label><select id="TIM:" name="TIM:"><option value="">Selecione</option><option>Direta</option><option>Indireta</option></select></div>
-      <div class="q"><label>VIVO:</label><select id="VIVO:" name="VIVO:"><option value="">Selecione</option><option>Direta</option><option>Indireta</option></select></div>
+      <div class="q"><label>ALGAR:</label><select id="ALGAR_itx" name="ALGAR_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>CLARO:</label><select id="CLARO_itx" name="CLARO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>OI:</label><select id="OI_itx" name="OI_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>TIM:</label><select id="TIM_itx" name="TIM_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>VIVO:</label><select id="VIVO_itx" name="VIVO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_itx" id="OUTROS_itx" placeholder="" /></div>
     </div>
     
-     <h3>Qual o escopo do projeto?</h3>
-    <div class="Qual o escopo do projeto?">
-        <label class="Qual o escopo do projeto?"><input type="checkbox" name="1ª Interconexão" name="1ª Interconexão">1ª Interconexão</label>
-        </div>
-      </div>
-      <div class="Qual o escopo do projeto?">
-        <label class="Qual o escopo do projeto?"><input type="checkbox" name="Nova área Geográfica" name="Nova área Geográfica">Nova área Geográfica</label>
-        </div>
-      </div>
-       <div class="Qual o escopo do projeto?">
-        <label class="Qual o escopo do projeto?"><input type="checkbox" name="Migração de Tecnologia (TDM x SIP x Internet)" name="Migração de Tecnologia (TDM x SIP x Internet)">Migração de Tecnologia (TDM x SIP x Internet)</label>
-        </div>
-      </div>
-    <div class="Qual o escopo do projeto?">
-        <label class="Qual o escopo do projeto?"><input type="checkbox" name="Ampliação de Rota Existente" name="Ampliação de Rota Existente">Ampliação de Rota Existente</label>
-        </div>
-      </div>
-     <div class="Qual o escopo do projeto?">
-        <label class="Qual o escopo do projeto?"><input type="checkbox" name="Contingência" name="Contingência">Ampliação de Rota Existente</label>
-        </div>
-      </div>
+    <h3>Qual o escopo do projeto?</h3>
+    <div class="escopo-projeto">
+      <label><input type="checkbox" name="escopo_projeto1" value="1ª Interconexão"> 1ª Interconexão</label>
+      <label><input type="checkbox" name="escopo_projeto2" value="Nova área Geográfica"> Nova área Geográfica</label>
+      <label><input type="checkbox" name="escopo_projeto3" value="Migração de Tecnologia (TDM x SIP x Internet)"> Migração de Tecnologia (TDM x SIP x Internet)</label>
+      <label><input type="checkbox" name="escopo_projeto4" value="Ampliação de Rota Existente"> Ampliação de Rota Existente</label>
+      <label><input type="checkbox" name="escopo_projeto5" value="Contingência"> Contingência</label>
+      <label><input type="checkbox" name="escopo_projeto6" value="Inclusão Novo Serviço (STFC, SMP ou SCM)"> Inclusão Novo Serviço (STFC, SMP ou SCM)</label>
+      <label><input type="checkbox" name="escopo_projeto7" value="Topologia de Centralização SIPi"> Topologia de Centralização SIPi</label>
+    </div>
 
-  <h3>Qual ou quais as áreas de atuação por (CN) para o referido projeto?</h3>
+    <h3>Qual ou quais as áreas de atuação por (CN) para o referido projeto?</h3>
     <div class="cn-section">
       <!-- Norte -->
       <div class="region norte">
         <div class="region-title">Norte</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'norte')"> Selecionar Todos</label>
-        <div class="cn-grid">
-          <label class="cn-item"><input type="checkbox" name="CN" value="68"> 68</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="69"> 69</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="92"> 92</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="93"> 93</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="94"> 94</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="95"> 95</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="96"> 96</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="97"> 97</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="98"> 98</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="99"> 99</label>
+        <div class="states-grid">
+          <div class="state" data-state="AC">
+            <div class="state-title">AC <span class="select-all-state" onclick="toggleState('AC')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="68"> CN 68</label>
+            </div>
+          </div>
+          <div class="state" data-state="AM">
+            <div class="state-title">AM <span class="select-all-state" onclick="toggleState('AM')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="92"> CN 92</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="97"> CN 97</label>
+            </div>
+          </div>
+          <div class="state" data-state="AP">
+            <div class="state-title">AP <span class="select-all-state" onclick="toggleState('AP')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="96"> CN 96</label>
+            </div>
+          </div>
+          <div class="state" data-state="PA">
+            <div class="state-title">PA <span class="select-all-state" onclick="toggleState('PA')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="91"> CN 91</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="93"> CN 93</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="94"> CN 94</label>
+            </div>
+          </div>
+          <div class="state" data-state="RO">
+            <div class="state-title">RO <span class="select-all-state" onclick="toggleState('RO')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="69"> CN 69</label>
+            </div>
+          </div>
+          <div class="state" data-state="RR">
+            <div class="state-title">RR <span class="select-all-state" onclick="toggleState('RR')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="95"> CN 95</label>
+            </div>
+          </div>
+          <div class="state" data-state="TO">
+            <div class="state-title">TO <span class="select-all-state" onclick="toggleState('TO')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="63"> CN 63</label>
+            </div>
+          </div>
         </div>
       </div>
+      
       <!-- Nordeste -->
       <div class="region nordeste">
         <div class="region-title">Nordeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'nordeste')"> Selecionar Todos</label>
-        <div class="cn-grid">
-          <label class="cn-item"><input type="checkbox" name="CN" value="71"> 71</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="73"> 73</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="74"> 74</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="75"> 75</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="77"> 77</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="79"> 79</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="81"> 81</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="82"> 82</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="83"> 83</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="84"> 84</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="85"> 85</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="86"> 86</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="87"> 87</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="88"> 88</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="89"> 89</label>
+        <div class="states-grid">
+          <div class="state" data-state="AL">
+            <div class="state-title">AL <span class="select-all-state" onclick="toggleState('AL')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="82"> CN 82</label>
+            </div>
+          </div>
+          <div class="state" data-state="BA">
+            <div class="state-title">BA <span class="select-all-state" onclick="toggleState('BA')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="71"> CN 71</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="73"> CN 73</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="74"> CN 74</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="75"> CN 75</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="77"> CN 77</label>
+            </div>
+          </div>
+          <div class="state" data-state="CE">
+            <div class="state-title">CE <span class="select-all-state" onclick="toggleState('CE')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="85"> CN 85</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="88"> CN 88</label>
+            </div>
+          </div>
+          <div class="state" data-state="MA">
+            <div class="state-title">MA <span class="select-all-state" onclick="toggleState('MA')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="98"> CN 98</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="99"> CN 99</label>
+            </div>
+          </div>
+          <div class="state" data-state="PB">
+            <div class="state-title">PB <span class="select-all-state" onclick="toggleState('PB')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="83"> CN 83</label>
+            </div>
+          </div>
+          <div class="state" data-state="PE">
+            <div class="state-title">PE <span class="select-all-state" onclick="toggleState('PE')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="81"> CN 81</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="87"> CN 87</label>
+            </div>
+          </div>
+          <div class="state" data-state="PI">
+            <div class="state-title">PI <span class="select-all-state" onclick="toggleState('PI')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="86"> CN 86</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="89"> CN 89</label>
+            </div>
+          </div>
+          <div class="state" data-state="RN">
+            <div class="state-title">RN <span class="select-all-state" onclick="toggleState('RN')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="84"> CN 84</label>
+            </div>
+          </div>
+          <div class="state" data-state="SE">
+            <div class="state-title">SE <span class="select-all-state" onclick="toggleState('SE')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="79"> CN 79</label>
+            </div>
+          </div>
         </div>
       </div>
+      
       <!-- Centro-Oeste -->
       <div class="region centro">
         <div class="region-title">Centro-Oeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'centro')"> Selecionar Todos</label>
-        <div class="cn-grid">
-          <label class="cn-item"><input type="checkbox" name="CN" value="61"> 61</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="62"> 62</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="63"> 63</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="64"> 64</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="65"> 65</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="66"> 66</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="67"> 67</label>
+        <div class="states-grid">
+          <div class="state" data-state="DF">
+            <div class="state-title">DF <span class="select-all-state" onclick="toggleState('DF')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="61"> CN 61</label>
+            </div>
+          </div>
+          <div class="state" data-state="GO">
+            <div class="state-title">GO <span class="select-all-state" onclick="toggleState('GO')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="62"> CN 62</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="64"> CN 64</label>
+            </div>
+          </div>
+          <div class="state" data-state="MS">
+            <div class="state-title">MS <span class="select-all-state" onclick="toggleState('MS')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="67"> CN 67</label>
+            </div>
+          </div>
+          <div class="state" data-state="MT">
+            <div class="state-title">MT <span class="select-all-state" onclick="toggleState('MT')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="65"> CN 65</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="66"> CN 66</label>
+            </div>
+          </div>
         </div>
       </div>
+      
       <!-- Sudeste -->
       <div class="region sudeste">
         <div class="region-title">Sudeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sudeste')"> Selecionar Todos</label>
-        <div class="cn-grid">
-          <label class="cn-item"><input type="checkbox" name="CN" value="11"> 11</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="12"> 12</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="13"> 13</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="14"> 14</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="15"> 15</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="16"> 16</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="17"> 17</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="18"> 18</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="19"> 19</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="21"> 21</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="22"> 22</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="24"> 24</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="27"> 27</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="28"> 28</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="31"> 31</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="32"> 32</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="33"> 33</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="34"> 34</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="35"> 35</label>
+        <div class="states-grid">
+          <div class="state" data-state="ES">
+            <div class="state-title">ES <span class="select-all-state" onclick="toggleState('ES')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="27"> CN 27</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="28"> CN 28</label>
+            </div>
+          </div>
+          <div class="state" data-state="MG">
+            <div class="state-title">MG <span class="select-all-state" onclick="toggleState('MG')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="31"> CN 31</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="32"> CN 32</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="33"> CN 33</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="34"> CN 34</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="35"> CN 35</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="37"> CN 37</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="38"> CN 38</label>
+            </div>
+          </div>
+          <div class="state" data-state="RJ">
+            <div class="state-title">RJ <span class="select-all-state" onclick="toggleState('RJ')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="21"> CN 21</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="22"> CN 22</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="24"> CN 24</label>
+            </div>
+          </div>
+          <div class="state" data-state="SP">
+            <div class="state-title">SP <span class="select-all-state" onclick="toggleState('SP')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="11"> CN 11</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="12"> CN 12</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="13"> CN 13</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="14"> CN 14</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="15"> CN 15</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="16"> CN 16</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="17"> CN 17</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="18"> CN 18</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="19"> CN 19</label>
+            </div>
+          </div>
         </div>
       </div>
+      
       <!-- Sul -->
       <div class="region sul">
         <div class="region-title">Sul</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sul')"> Selecionar Todos</label>
-        <div class="cn-grid">
-          <label class="cn-item"><input type="checkbox" name="CN" value="41"> 41</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="42"> 42</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="43"> 43</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="44"> 44</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="45"> 45</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="46"> 46</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="47"> 47</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="48"> 48</label>
-          <label class="cn-item"><input type="checkbox" name="CN" value="49"> 49</label>
+        <div class="states-grid">
+          <div class="state" data-state="PR">
+            <div class="state-title">PR <span class="select-all-state" onclick="toggleState('PR')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="41"> CN 41</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="42"> CN 42</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="43"> CN 43</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="44"> CN 44</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="45"> CN 45</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="46"> CN 46</label>
+            </div>
+          </div>
+          <div class="state" data-state="RS">
+            <div class="state-title">RS <span class="select-all-state" onclick="toggleState('RS')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="51"> CN 51</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="53"> CN 53</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="54"> CN 54</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="55"> CN 55</label>
+            </div>
+          </div>
+          <div class="state" data-state="SC">
+            <div class="state-title">SC <span class="select-all-state" onclick="toggleState('SC')">Selecionar Todos</span></div>
+            <div class="cn-grid">
+              <label class="cn-item"><input type="checkbox" name="CN" value="47"> CN 47</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="48"> CN 48</label>
+              <label class="cn-item"><input type="checkbox" name="CN" value="49"> CN 49</label>
+            </div>
+          </div>
         </div>
       </div>
-      <h3>A execução mensal do DETRAF é feito por equipe própria ou por empresa terceira especializada? Qual é o fornecedor da plataforma de DETRAF?</h3>
+    </div>
+    
+    <h3>Possui Plataforma de Voz?</h3>
     <div class="grid">
-      <div class="q full"><label></label><input name="A execução mensal do DETRAF é feito por equipe própria ou por empresa terceira especializada? Qual é o fornecedor da plataforma de DETRAF?" /></div>
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_plataforma" name="SIM_NAO_plataforma"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_plataforma" id="FORNECEDOR_plataforma" placeholder="" /></div>
     </div>
-      <h3>Possui serviço de voz em funcionamento e com usuário ativo na rede?</h3>
+
+    <h3>Possui Gateway/SBC?</h3>
     <div class="grid">
-      <div class="q full"><label></label><input name="Possui serviço de voz em funcionamento e com usuário ativo na rede?" /></div>
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_gateway" name="SIM_NAO_gateway"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_gateway" id="FORNECEDOR_gateway" placeholder="" /></div>
     </div>
-      <h3>Se sim, qual é a operadora parceira que fornece os números? Qual o volume de usuários residenciais, corporativos e governamentais?</h3>
+
+    <h3>Possui Sistema/Plataforma de DETRAF?</h3>
     <div class="grid">
-      <div class="q full"><label></label><input name="operadora parceira que fornece os números? Qual o volume de usuários residenciais, corporativos e governamentais?" /></div>
+      <div class="q"><label>Selecione uma opção</label><select id="SIM_NAO_sistema_detraf" name="SIM_NAO_sistema_detraf"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>Qual fornecedor?</label><input name="FORNECEDOR_sistema_detraf" id="FORNECEDOR_sistema_detraf" placeholder="" /></div>
     </div>
-      <h3>Possui serviço de TV por assinatura (outorga SeAC) em funcionamento e com usuário ativo na rede? Qual a quantidade de usuários residenciais, corporativos e governamentais ativos?</h3>
-    <div class="grid">
-      <div class="q full"><label></label><input name="Possui serviço de TV por assinatura (outorga SeAC) em funcionamento e com usuário ativo na rede?" /></div>
-    </div>
-      <h3>Indique aqui outras informações e destaques importantes sobre a prestação de serviços de voz e internet, situação de negociações com operadoras, etc.</h3>
-    <div class="grid">
-      <div class="q full"><label></label><input name="outras informações" /></div>
-    </div>
-    </div>
+    
     <div class="actions">
       <button type="submit" class="btn primary">Enviar</button>
       <button type="reset" class="btn ghost">Limpar</button>
     </div>
   </form>
+  
   <footer>
     TMCO Consultoria &copy; 2025
     <span class="diretriz">Todos os direitos reservados.</span>
   </footer>
 
-    <!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init("_qKt61jrHvEWCuZph"); // PUBLIC_KEY
-  })();
-</script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("_qKt61jrHvEWCuZph"); // PUBLIC_KEY
+    })();
+  </script>
 
-<script>
-  // Função para mostrar o formulário
-  function mostrarFormulario() {
-    document.getElementById("questionario").style.display = "block";
-    window.scrollTo(0, 0);
-  }
-
-  // Função para marcar/desmarcar CNs por região
-  function toggleRegion(source, regionClass) {
-    const checkboxes = document.querySelectorAll("." + regionClass + " input[type='checkbox']");
-    checkboxes.forEach(cb => {
-      if (cb !== source) cb.checked = source.checked;
-    });
-  }
-
-  // Enviar o formulário via EmailJS
-  document.getElementById("questionario").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    // ⚠️ Se desejar coletar e enviar múltiplos checkboxes (CNs), junte-os antes:
-    const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
-      .map(cb => cb.value)
-      .join(", ");
-
-    // Coloque os CNs combinados num campo oculto:
-    let cnHidden = document.getElementById("cn_combinado");
-    if (!cnHidden) {
-      cnHidden = document.createElement("input");
-      cnHidden.type = "hidden";
-      cnHidden.name = "cn_combinado";
-      cnHidden.id = "cn_combinado";
-      this.appendChild(cnHidden);
+  <script>
+    // Função para mostrar o formulário
+    function mostrarFormulario() {
+      document.getElementById("questionario").style.display = "block";
+      window.scrollTo(0, 0);
     }
-    cnHidden.value = checkedCNs;
 
-    // Enviar com EmailJS
-    emailjs.sendForm("service_ubg7zn3", "template_7az3lls", this)
-      .then(function(response) {
-        alert("✅ Formulário enviado com sucesso!");
-        document.getElementById("questionario").reset();
-      }, function(error) {
-        console.error("❌ Erro:", error);
-        alert("Erro ao enviar. Verifique sua conexão ou tente novamente.");
+    // Função para marcar/desmarcar CNs por região
+    function toggleRegion(source, regionClass) {
+      const checkboxes = document.querySelectorAll("." + regionClass + " input[type='checkbox']");
+      checkboxes.forEach(cb => {
+        if (cb !== source) cb.checked = source.checked;
       });
-  });
-
-
-  
-  // Função para buscar CNPJ na BrasilAPI
-  async function buscarCNPJ(cnpj) {
-    cnpj = cnpj.replace(/\D/g, ""); // remove caracteres não numéricos
-    if (cnpj.length !== 14) return;
-
-    try {
-      const resposta = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
-      if (!resposta.ok) throw new Error("Erro ao buscar CNPJ");
-
-      const dados = await resposta.json();
-
-      // Preencher automaticamente os campos
-      document.querySelector("input[name='razao_social']").value = dados.razao_social || "";
-      document.querySelector("input[name='nome_fantasia']").value = dados.nome_fantasia || "";
-      document.querySelector("input[name='endereco']").value = `${dados.logradouro || ""}, ${dados.numero || ""}`;
-      document.querySelector("input[name='bairro']").value = dados.bairro || "";
-      document.querySelector("input[name='cidade']").value = dados.municipio || "";
-      document.querySelector("input[name='uf']").value = dados.uf || "";
-      document.querySelector("input[name='cep']").value = dados.cep || "";
-    } catch (erro) {
-      console.error("Erro ao consultar CNPJ:", erro);
-      alert("❌ Não foi possível consultar o CNPJ. Verifique e tente novamente.");
     }
-  }
 
-  // Detecta quando o usuário sai do campo de CNPJ
-  document.getElementById("cnpj").addEventListener("blur", function () {
-    buscarCNPJ(this.value);
-  });
-</script>
+    // Função para marcar/desmarcar CNs por estado
+    function toggleState(stateCode) {
+      // Encontra o container do estado usando o atributo data-state
+      const stateContainer = document.querySelector(.state[data-state="${stateCode}"]);
+      if (!stateContainer) return;
+      
+      const checkboxes = stateContainer.querySelectorAll("input[type='checkbox']");
+      if (checkboxes.length === 0) return;
+      
+      // Verifica se todos já estão selecionados
+      const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+      
+      // Alterna o estado de todos os checkboxes
+      checkboxes.forEach(cb => {
+        cb.checked = !allChecked;
+      });
+    }
 
+    // Enviar o formulário via EmailJS
+    document.getElementById("questionario").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Coletar e enviar múltiplos checkboxes (CNs)
+      const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
+        .map(cb => cb.value)
+        .join(", ");
+
+      // Colocar os CNs combinados num campo oculto:
+      let cnHidden = document.getElementById("cn_combinado");
+      if (!cnHidden) {
+        cnHidden = document.createElement("input");
+        cnHidden.type = "hidden";
+        cnHidden.name = "cn_combinado";
+        cnHidden.id = "cn_combinado";
+        this.appendChild(cnHidden);
+      }
+      cnHidden.value = checkedCNs;
+
+      // Enviar com EmailJS
+      emailjs.sendForm("service_ubg7zn3", "template_7az3lls", this)
+        .then(function(response) {
+          alert("✅ Formulário enviado com sucesso!");
+          document.getElementById("questionario").reset();
+        }, function(error) {
+          console.error("❌ Erro:", error);
+          alert("Erro ao enviar. Verifique sua conexão ou tente novamente.");
+        });
+    });
+
+    // Função para buscar CNPJ na BrasilAPI
+    async function buscarCNPJ(cnpj) {
+      cnpj = cnpj.replace(/\D/g, ""); // remove caracteres não numéricos
+      if (cnpj.length !== 14) return;
+
+      try {
+        const resposta = await fetch(https://brasilapi.com.br/api/cnpj/v1/${cnpj});
+        if (!resposta.ok) throw new Error("Erro ao buscar CNPJ");
+
+        const dados = await resposta.json();
+
+        // Preencher automaticamente os campos
+        document.querySelector("input[name='razao_social']").value = dados.razao_social || "";
+        document.querySelector("input[name='nome_fantasia']").value = dados.nome_fantasia || "";
+        document.querySelector("input[name='endereco']").value = ${dados.logradouro || ""}, ${dados.numero || ""};
+        document.querySelector("input[name='bairro']").value = dados.bairro || "";
+        document.querySelector("input[name='cidade']").value = dados.municipio || "";
+        document.querySelector("input[name='uf']").value = dados.uf || "";
+        document.querySelector("input[name='cep']").value = dados.cep || "";
+      } catch (erro) {
+        console.error("Erro ao consultar CNPJ:", erro);
+        alert("❌ Não foi possível consultar o CNPJ. Verifique e tente novamente.");
+      }
+    }
+
+    // Detecta quando o usuário sai do campo de CNPJ
+    document.getElementById("cnpj").addEventListener("blur", function () {
+      buscarCNPJ(this.value);
+    });
+  </script>
 </body>
 </html>
-
