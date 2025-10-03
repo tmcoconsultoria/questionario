@@ -8,14 +8,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    :root{--azul:#003366;--azul2:#007BFF;--amarelo:#FFD700;--cinza:#f4f4f4;}
+    :root{--azul:#003366;--azul2:#007BFF;--azul-claro:#4A90E2;--amarelo:#FFD700;--cinza:#f4f4f4;}
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,Helvetica,sans-serif;background:var(--cinza);margin:0;min-height:100vh;display:flex;flex-direction:column}
-    header{background:var(--azul);color:#fff;border-bottom:2px solid var(--azul2);text-align:center}
+    header{background:var(--azul);color:#fff;border-bottom:2px solid var(--azul2);text-align:center;padding-bottom:20px;}
     header img{width:100%;max-height:250px;object-fit:contain;display:block;margin:0 auto;background:#fff}
     header h1{margin:0;padding:12px;font-size:20px}
-    .cta{text-align:center;margin:18px 0}
-    .cta button{padding:14px 24px;background:var(--azul2);color:#fff;border:0;border-radius:10px;font-size:16px;cursor:pointer}
+    .descricao{margin:30px auto;max-width:980px;padding:0 22px;text-align:center;}
+    .descricao h2{color:var(--azul-claro);font-size:18px;margin-bottom:15px;line-height:1.5;}
+    .descricao p{color:#666;font-size:14px;line-height:1.6;}
+    .cta{text-align:center;margin:40px 0}
+    .cta button{padding:14px 24px;background:var(--azul2);color:#fff;border:0;border-radius:10px;font-size:16px;cursor:pointer;transition:background 0.3s;}
+    .cta button:hover{background:var(--azul-claro);}
     form{display:none;background:#fff;max-width:980px;margin:18px auto;padding:22px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
     h3{background:var(--amarelo);color:var(--azul);padding:8px 12px;border-radius:8px;margin:26px 0 14px;font-size:18px}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -97,6 +101,10 @@
       .states-grid { 
         grid-template-columns: 1fr; 
       }
+      .descricao {
+        margin: 20px auto;
+        padding: 0 15px;
+      }
     }
   </style>
 </head>
@@ -104,8 +112,11 @@
   <header>
     <img src="tmco.png" alt="TMCO Consultoria" />
     <h1>QUESTIONÁRIO PARA PROJETO DE INTERCONEXÃO</h1>
-    <h2>A proposta comercial da TMCO será elaborada exclusivamente com base nos dados fornecidos neste formulário. Inconsistências identificadas durante a implantação poderão resultar na revisão da proposta para melhor adequação ao cenário real. Assim, em caso de dúvidas no preenchimento dos dados, recomenda-se que consulte-nos  antes de finalizar o formulário.</h2>
   </header>
+
+  <div class="descricao">
+    <h2>A proposta comercial da TMCO será elaborada exclusivamente com base nos dados fornecidos neste formulário. Inconsistências identificadas durante a implantação poderão resultar na revisão da proposta para melhor adequação ao cenário real. Assim, em caso de dúvidas no preenchimento dos dados, recomenda-se que consulte-nos antes de finalizar o formulário.</h2>
+  </div>
 
   <div class="cta">
     <button type="button" class="btn primary" onclick="mostrarFormulario()">Clique aqui e preencha o formulário</button>
@@ -200,11 +211,11 @@
     
     <h3>Possui hoje ITX estabelecida com as operadoras?</h3>
     <div class="grid">
-      <div class="q"><label>ALGAR:</label><select id="ALGAR_itx" name="ALGAR_itx"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>CLARO:</label><select id="CLARO_itx" name="CLARO_itx"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>OI:</label><select id="OI_itx" name="OI_itx"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>TIM:</label><select id="TIM_itx" name="TIM_itx"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>VIVO:</label><select id="VIVO_itx" name="VIVO_itx"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+      <div class="q"><label>ALGAR:</label><select id="ALGAR_itx" name="ALGAR_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>CLARO:</label><select id="CLARO_itx" name="CLARO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>OI:</label><select id="OI_itx" name="OI_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>TIM:</label><select id="TIM_itx" name="TIM_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
+      <div class="q"><label>VIVO:</label><select id="VIVO_itx" name="VIVO_itx"><option value="">Selecione</option><option>Direta</option><option>Indireta</option><option>Não</option></select></div>
       <div class="q"><label>OUTROS:</label><input name="OUTROS_itx" id="OUTROS_itx" placeholder="" /></div>
     </div>
     
