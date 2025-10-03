@@ -339,9 +339,10 @@
       align-items: center;
     }
     
+    /* CORREÇÃO PRINCIPAL - DUAS COLUNAS FIXAS */
     .cn-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
     
@@ -432,6 +433,11 @@
     /* Ajustes para melhor responsividade */
     @media (max-width: 600px) {
       .states-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Em telas muito pequenas, os CNs ficam em uma coluna */
+      .cn-grid {
         grid-template-columns: 1fr;
       }
       
@@ -622,6 +628,7 @@
             <div class="state-title">AC <span class="select-all-state" onclick="toggleState('AC')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="68"> CN 68</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
           <div class="state" data-state="AM">
@@ -635,6 +642,7 @@
             <div class="state-title">AP <span class="select-all-state" onclick="toggleState('AP')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="96"> CN 96</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
           <div class="state" data-state="PA">
@@ -643,24 +651,28 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="91"> CN 91</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="93"> CN 93</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="94"> CN 94</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
           <div class="state" data-state="RO">
             <div class="state-title">RO <span class="select-all-state" onclick="toggleState('RO')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="69"> CN 69</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
           <div class="state" data-state="RR">
             <div class="state-title">RR <span class="select-all-state" onclick="toggleState('RR')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="95"> CN 95</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
           <div class="state" data-state="TO">
             <div class="state-title">TO <span class="select-all-state" onclick="toggleState('TO')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="63"> CN 63</label>
+              <label class="cn-item"></label> <!-- Coluna vazia para manter o layout -->
             </div>
           </div>
         </div>
@@ -675,6 +687,7 @@
             <div class="state-title">AL <span class="select-all-state" onclick="toggleState('AL')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="82"> CN 82</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="BA">
@@ -685,6 +698,7 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="74"> CN 74</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="75"> CN 75</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="77"> CN 77</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="CE">
@@ -705,6 +719,7 @@
             <div class="state-title">PB <span class="select-all-state" onclick="toggleState('PB')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="83"> CN 83</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="PE">
@@ -725,12 +740,14 @@
             <div class="state-title">RN <span class="select-all-state" onclick="toggleState('RN')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="84"> CN 84</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="SE">
             <div class="state-title">SE <span class="select-all-state" onclick="toggleState('SE')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="79"> CN 79</label>
+              <label class="cn-item"></label>
             </div>
           </div>
         </div>
@@ -745,6 +762,7 @@
             <div class="state-title">DF <span class="select-all-state" onclick="toggleState('DF')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="61"> CN 61</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="GO">
@@ -758,6 +776,7 @@
             <div class="state-title">MS <span class="select-all-state" onclick="toggleState('MS')">Selecionar Todos</span></div>
             <div class="cn-grid">
               <label class="cn-item"><input type="checkbox" name="CN" value="67"> CN 67</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="MT">
@@ -792,6 +811,7 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="35"> CN 35</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="37"> CN 37</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="38"> CN 38</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="RJ">
@@ -800,6 +820,7 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="21"> CN 21</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="22"> CN 22</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="24"> CN 24</label>
+              <label class="cn-item"></label>
             </div>
           </div>
           <div class="state" data-state="SP">
@@ -814,6 +835,7 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="17"> CN 17</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="18"> CN 18</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="19"> CN 19</label>
+              <label class="cn-item"></label>
             </div>
           </div>
         </div>
@@ -850,6 +872,7 @@
               <label class="cn-item"><input type="checkbox" name="CN" value="47"> CN 47</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="48"> CN 48</label>
               <label class="cn-item"><input type="checkbox" name="CN" value="49"> CN 49</label>
+              <label class="cn-item"></label>
             </div>
           </div>
         </div>
