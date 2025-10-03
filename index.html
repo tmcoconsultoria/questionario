@@ -194,7 +194,7 @@
       <div class="q"><label>CLARO:</label><select id="CLARO_contrato" name="CLARO_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>OI:</label><select id="OI_contrato" name="OI_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
       <div class="q"><label>TIM:</label><select id="TIM_contrato" name="TIM_contrato"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
-      <div class="q"><label>OUTROS:</label><input name="OUTROS_contato" id="OUTROS_contrato" placeholder="" /></div>
+      <div class="q"><label>OUTROS:</label><input name="OUTROS_contrato" id="OUTROS_contrato" placeholder="" /></div>
     </div>
     
     <h3>Possui hoje ITX estabelecida com as operadoras?</h3>
@@ -537,6 +537,15 @@
     document.getElementById("questionario").addEventListener("submit", function(e) {
       e.preventDefault();
 
+      // Coletar checkboxes de escopo do projeto individualmente
+      const escopo1 = document.querySelector('input[name="escopo_projeto1"]:checked')?.value || '';
+      const escopo2 = document.querySelector('input[name="escopo_projeto2"]:checked')?.value || '';
+      const escopo3 = document.querySelector('input[name="escopo_projeto3"]:checked')?.value || '';
+      const escopo4 = document.querySelector('input[name="escopo_projeto4"]:checked')?.value || '';
+      const escopo5 = document.querySelector('input[name="escopo_projeto5"]:checked')?.value || '';
+      const escopo6 = document.querySelector('input[name="escopo_projeto6"]:checked')?.value || '';
+      const escopo7 = document.querySelector('input[name="escopo_projeto7"]:checked')?.value || '';
+
       // Coletar e enviar múltiplos checkboxes (CNs)
       const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
         .map(cb => cb.value)
@@ -547,7 +556,7 @@
       if (!cnHidden) {
         cnHidden = document.createElement("input");
         cnHidden.type = "hidden";
-        cnHidden.name = "cn_combinado";
+        cnHidden.name = "CN";
         cnHidden.id = "cn_combinado";
         this.appendChild(cnHidden);
       }
