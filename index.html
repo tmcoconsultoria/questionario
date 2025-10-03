@@ -274,7 +274,6 @@
       }
     }
 
-    /* ---------------- CNs ---------------- */
     .cn-section {
       margin-top: 20px;
     }
@@ -310,7 +309,6 @@
       margin-right: 8px;
     }
     
-    /* MUDANÇA PRINCIPAL: Estados em DUAS COLUNAS */
     .states-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -370,7 +368,6 @@
       font-weight: 500;
     }
     
-    /* Cores das regiões */
     .norte {
       border: 1px solid #cce5ff;
     }
@@ -411,7 +408,6 @@
       background-color: #6c757d;
     }
     
-    /* Estilos para checkboxes de escopo */
     .escopo-projeto {
       margin-bottom: 10px;
     }
@@ -431,7 +427,6 @@
       background: #e2eaf9;
     }
     
-    /* Ajustes para melhor responsividade */
     @media (max-width: 768px) {
       .states-grid {
         grid-template-columns: 1fr;
@@ -455,7 +450,6 @@
       }
     }
     
-    /* Animações */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -465,7 +459,6 @@
       animation: fadeIn 0.5s ease-out;
     }
     
-    /* Loading state para botões */
     .btn.loading {
       position: relative;
       color: transparent;
@@ -506,7 +499,6 @@
   </div>
 
   <form id="questionario">
-    <!-- ----------------- DADOS DA EMPRESA ----------------- -->
     <h3>Dados da Empresa</h3>
     <div class="grid">
       <div class="q"><label>Razão Social <small class="req">*</small></label><input required name="razao_social" /></div>
@@ -531,7 +523,6 @@
       <div class="q"><label>CEP</label><input name="cep" id="cep" placeholder="00000-000" /></div>
     </div>
 
-    <!-- ----------------- DADOS DO REPRESENTANTE ----------------- -->
     <h3>Dados do Representante Legal</h3>
     <div class="grid">
       <div class="q"><label>Nome Completo <small class="req">*</small></label><input required name="rep_nome" /></div>
@@ -554,7 +545,6 @@
       <div class="q"><label>CEP Residencial</label><input name="rep_cep" id="cep_res" placeholder="00000-000" /></div>
     </div>
 
-    <!-- ----------------- CREDENCIAMENTO ABR ----------------- -->
     <h3>Possui credenciamento nos sistemas ABR?</h3>
     <div class="grid">
       <div class="q"><label>EASI/nSAPN:</label><select id="EASI" name="EASI"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
@@ -565,7 +555,6 @@
       <div class="q"><label>STIRSHAKEN:</label><select id="STIRSHAKEN" name="STIRSHAKEN"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
     </div>
 
-    <!-- ----------------- RECURSOS DE NUMERAÇÃO ----------------- -->
     <h3>Possui recursos de numeração?</h3>
     <div class="grid">
       <div class="q"><label>RN1:</label><select id="RN1" name="RN1"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
@@ -574,7 +563,6 @@
       <div class="q"><label>CNG:</label><select id="CNG" name="CNG" ><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
     </div>
 
-    <!-- ----------------- SOLUÇÃO ABR ----------------- -->
     <h3>Solução ABR já implantada?</h3>
     <div class="grid">
       <div class="q"><label>Portabilidade:</label><select id="Portabilidade_implantada" name="Portabilidade_implantada"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
@@ -611,17 +599,14 @@
       <label><input type="checkbox" name="escopo_projeto5" value="Contingência"> Contingência</label>
       <label><input type="checkbox" name="escopo_projeto6" value="Inclusão Novo Serviço (STFC, SMP ou SCM)"> Inclusão Novo Serviço (STFC, SMP ou SCM)</label>
       <label><input type="checkbox" name="escopo_projeto7" value="Topologia de Centralização SIPi"> Topologia de Centralização SIPi</label>
-      <div class="q"><label>OUTROS:</label><input name="OUTROS_escopo" id="OUTROS_escopo" placeholder="" /></div>
     </div>
 
     <h3>Qual ou quais as áreas de atuação por (CN) para o referido projeto?</h3>
     <div class="cn-section">
-      <!-- Norte -->
       <div class="region norte">
         <div class="region-title">Norte</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'norte')"> Selecionar Todos</label>
         <div class="states-grid">
-          <!-- Coluna 1 -->
           <div>
             <div class="state" data-state="AC">
               <div class="state-title">AC <span class="select-all-state" onclick="toggleState('AC')">Selecionar Todos</span></div>
@@ -652,7 +637,6 @@
             </div>
           </div>
           
-          <!-- Coluna 2 -->
           <div>
             <div class="state" data-state="RO">
               <div class="state-title">RO <span class="select-all-state" onclick="toggleState('RO')">Selecionar Todos</span></div>
@@ -676,12 +660,10 @@
         </div>
       </div>
       
-      <!-- Nordeste -->
       <div class="region nordeste">
         <div class="region-title">Nordeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'nordeste')"> Selecionar Todos</label>
         <div class="states-grid">
-          <!-- Coluna 1 -->
           <div>
             <div class="state" data-state="AL">
               <div class="state-title">AL <span class="select-all-state" onclick="toggleState('AL')">Selecionar Todos</span></div>
@@ -708,7 +690,6 @@
             </div>
           </div>
           
-          <!-- Coluna 2 -->
           <div>
             <div class="state" data-state="MA">
               <div class="state-title">MA <span class="select-all-state" onclick="toggleState('MA')">Selecionar Todos</span></div>
@@ -753,12 +734,10 @@
         </div>
       </div>
       
-      <!-- Centro-Oeste -->
       <div class="region centro">
         <div class="region-title">Centro-Oeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'centro')"> Selecionar Todos</label>
         <div class="states-grid">
-          <!-- Coluna 1 -->
           <div>
             <div class="state" data-state="DF">
               <div class="state-title">DF <span class="select-all-state" onclick="toggleState('DF')">Selecionar Todos</span></div>
@@ -775,7 +754,6 @@
             </div>
           </div>
           
-          <!-- Coluna 2 -->
           <div>
             <div class="state" data-state="MS">
               <div class="state-title">MS <span class="select-all-state" onclick="toggleState('MS')">Selecionar Todos</span></div>
@@ -794,12 +772,10 @@
         </div>
       </div>
       
-      <!-- Sudeste -->
       <div class="region sudeste">
         <div class="region-title">Sudeste</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sudeste')"> Selecionar Todos</label>
         <div class="states-grid">
-          <!-- Coluna 1 -->
           <div>
             <div class="state" data-state="ES">
               <div class="state-title">ES <span class="select-all-state" onclick="toggleState('ES')">Selecionar Todos</span></div>
@@ -822,7 +798,6 @@
             </div>
           </div>
           
-          <!-- Coluna 2 -->
           <div>
             <div class="state" data-state="RJ">
               <div class="state-title">RJ <span class="select-all-state" onclick="toggleState('RJ')">Selecionar Todos</span></div>
@@ -850,12 +825,10 @@
         </div>
       </div>
       
-      <!-- Sul -->
       <div class="region sul">
         <div class="region-title">Sul</div>
         <label class="select-all"><input type="checkbox" onclick="toggleRegion(this,'sul')"> Selecionar Todos</label>
         <div class="states-grid">
-          <!-- Coluna 1 -->
           <div>
             <div class="state" data-state="PR">
               <div class="state-title">PR <span class="select-all-state" onclick="toggleState('PR')">Selecionar Todos</span></div>
@@ -870,7 +843,6 @@
             </div>
           </div>
           
-          <!-- Coluna 2 -->
           <div>
             <div class="state" data-state="RS">
               <div class="state-title">RS <span class="select-all-state" onclick="toggleState('RS')">Selecionar Todos</span></div>
@@ -923,21 +895,18 @@
     <span class="diretriz">Todos os direitos reservados.</span>
   </footer>
 
-  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("_qKt61jrHvEWCuZph"); // PUBLIC_KEY
+      emailjs.init("_qKt61jrHvEWCuZph");
     })();
   </script>
 
   <script>
-    // Função para mostrar o formulário
     function mostrarFormulario() {
       document.getElementById("questionario").style.display = "block";
       document.body.classList.add('formulario-aberto');
       
-      // Adiciona overlay para melhor legibilidade
       if (!document.querySelector('.overlay')) {
         const overlay = document.createElement('div');
         overlay.className = 'overlay';
@@ -947,7 +916,6 @@
       window.scrollTo(0, 0);
     }
 
-    // Função para marcar/desmarcar CNs por região
     function toggleRegion(source, regionClass) {
       const checkboxes = document.querySelectorAll("." + regionClass + " input[type='checkbox']");
       checkboxes.forEach(cb => {
@@ -955,48 +923,30 @@
       });
     }
 
-    // Função para marcar/desmarcar CNs por estado
     function toggleState(stateCode) {
-      // Encontra o container do estado usando o atributo data-state - CORRIGIDO
       const stateContainer = document.querySelector('.state[data-state="' + stateCode + '"]');
       if (!stateContainer) return;
       
       const checkboxes = stateContainer.querySelectorAll("input[type='checkbox']");
       if (checkboxes.length === 0) return;
       
-      // Verifica se todos já estão selecionados
       const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-      
-      // Alterna o estado de todos os checkboxes
       checkboxes.forEach(cb => {
         cb.checked = !allChecked;
       });
     }
 
-    // Enviar o formulário via EmailJS
     document.getElementById("questionario").addEventListener("submit", function(e) {
       e.preventDefault();
       
-      // Adiciona efeito de loading ao botão
       const submitBtn = this.querySelector('button[type="submit"]');
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
-      // Coletar checkboxes de escopo do projeto individualmente
-      const escopo1 = document.querySelector('input[name="escopo_projeto1"]:checked')?.value || '';
-      const escopo2 = document.querySelector('input[name="escopo_projeto2"]:checked')?.value || '';
-      const escopo3 = document.querySelector('input[name="escopo_projeto3"]:checked')?.value || '';
-      const escopo4 = document.querySelector('input[name="escopo_projeto4"]:checked')?.value || '';
-      const escopo5 = document.querySelector('input[name="escopo_projeto5"]:checked')?.value || '';
-      const escopo6 = document.querySelector('input[name="escopo_projeto6"]:checked')?.value || '';
-      const escopo7 = document.querySelector('input[name="escopo_projeto7"]:checked')?.value || '';
-
-      // Coletar e enviar múltiplos checkboxes (CNs)
       const checkedCNs = Array.from(document.querySelectorAll("input[name='CN']:checked"))
         .map(cb => cb.value)
         .join(", ");
 
-      // Colocar os CNs combinados num campo oculto:
       let cnHidden = document.getElementById("cn_combinado");
       if (!cnHidden) {
         cnHidden = document.createElement("input");
@@ -1007,7 +957,6 @@
       }
       cnHidden.value = checkedCNs;
 
-      // Enviar com EmailJS
       emailjs.sendForm("service_ubg7zn3", "template_7az3lls", this)
         .then(function(response) {
           alert("✅ Formulário enviado com sucesso!");
@@ -1022,9 +971,8 @@
         });
     });
 
-    // Função para buscar CNPJ na BrasilAPI
     async function buscarCNPJ(cnpj) {
-      cnpj = cnpj.replace(/\D/g, ""); // remove caracteres não numéricos
+      cnpj = cnpj.replace(/\D/g, "");
       if (cnpj.length !== 14) return;
 
       try {
@@ -1033,7 +981,6 @@
 
         const dados = await resposta.json();
 
-        // Preencher automaticamente os campos - CORRIGIDO
         document.querySelector("input[name='razao_social']").value = dados.razao_social || "";
         document.querySelector("input[name='nome_fantasia']").value = dados.nome_fantasia || "";
         document.querySelector("input[name='endereco']").value = (dados.logradouro || "") + ", " + (dados.numero || "");
@@ -1047,7 +994,6 @@
       }
     }
 
-    // Detecta quando o usuário sai do campo de CNPJ
     document.getElementById("cnpj").addEventListener("blur", function () {
       buscarCNPJ(this.value);
     });
